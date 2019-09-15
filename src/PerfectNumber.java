@@ -12,16 +12,21 @@ public class PerfectNumber {
 		return sum;
 	}
 	
-	public static void checkNumber(int number, int sum) {
+	public static String detect(int number, int sum) {
+		String classification;
 		if (sum < number) {
 			System.out.println("It is a dificient number");
+			classification = "dificient";
 		} else {
 			if (sum == number) {
 				System.out.println("It is a perfect number");
+				classification = "perfect";
 			} else {
 				System.out.println("It is a abundant number");
+				classification = "abundant";
 			}
 		}
+		return classification;
 	}
 
 	public static void main(String[] args) {
@@ -41,8 +46,8 @@ public class PerfectNumber {
 		sc.close();
 		
 		System.out.println("Your number is " + number);
-		System.out.println("Your number sum is: "+ divisorsSum(number));
-		checkNumber(number, divisorsSum(number));
+		System.out.println("Your number sum is "+ divisorsSum(number));
+		detect(number, divisorsSum(number));
 		
 	}	
 }
