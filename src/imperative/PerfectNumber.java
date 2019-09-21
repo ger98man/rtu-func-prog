@@ -1,7 +1,50 @@
+package imperative;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PerfectNumber {
+
+// CORRECT TASK VARIANT
+	public enum STATE {
+		ABUNDANT,
+		DEFICIENT,
+		PERFECT;
+	}
+
+	public static ArrayList<Integer> divisors(int n) {
+		ArrayList<Integer> divisors_list = new ArrayList<Integer>();
+		for(int i = 1 ; i < n ; i++) {
+			if(n % i == 0)  {
+				divisors_list.add(i);
+			}
+		}
+		divisors_list.add(n);
+		return divisors_list;
+	}
 	
+	public static STATE process(int n) {
+		
+		int sum = 0;
+		for(int i = 1 ; i < n ; i++) {
+			if(n % i == 0 && i!=n)  {
+				sum = sum + i;
+			}
+		}
+		
+		STATE classification;
+		if (sum < n) {
+			classification = STATE.DEFICIENT;
+		} else {
+			if (sum == n) {
+				classification = STATE.PERFECT;
+			} else {
+				classification = STATE.ABUNDANT;
+			}
+		}
+		return classification;
+	}
+	
+// MY VARIANT
 	public static int divisorsSum(int n) {
 		int sum = 0;
 		for(int i = 1 ; i < n ; i++) {
@@ -49,5 +92,7 @@ public class PerfectNumber {
 		System.out.println("Your number sum is "+ divisorsSum(number));
 		detect(number, divisorsSum(number));
 		
-	}	
+	}
+
+		
 }
